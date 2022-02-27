@@ -5,7 +5,7 @@ description = ""
 authors = ["Thomas Sajot"]
 
 packages = [
-    { include = "attention" },
+    { include = "attention" , from ="src"},
 ]
 
 [tool.poetry.dependencies]
