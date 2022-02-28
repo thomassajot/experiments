@@ -5,6 +5,8 @@ import numpy as np
 import haiku as hk
 import jax
 
+from attention.layers.normalization import WIPLayerNorm
+
 def test_multi_head_attention():
     num_heads = 2
     sequence = 3
@@ -38,3 +40,17 @@ def test_multi_head_attention():
 
     assert activations.shape == (batch, sequence, output_size)
     np.testing.assert_almost_equal(np.array(activations), expected_activations, decimal=6)
+
+
+def test_layer_norm():
+    def f(x):
+        layer_norm = WIPLayerNorm('blob')
+        return layer_norm(x)
+
+    shape = [8, 224, 224, 3]
+    x = jnp.ones(shape)
+    f = hk.transform(f)
+    params = f.init(None, x)
+    norm = f.apply(params, None, x)
+    
+    np.testing.assert_almost_equal(np.array(norm), np.zeros(shape))
