@@ -25,6 +25,7 @@ ipywidgets = "*"
 [tool.poetry.dev-dependencies]
 pytest = "7.*"
 flake8 = "4.0.*"
+black = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -35,3 +36,6 @@ build-backend = "poetry.core.masonry.api"
 filterwarnings = [
     "ignore::DeprecationWarning",
 ]
+
+[tool.black]
+line-length = 120
